@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOVA COFFEE — Кофейня</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">NOVA<span>.</span></a>
+
+        <nav>
+            <a href="#home">Главная</a>
+            <a href="#menu">Меню</a>
+            <a href="#about">О нас</a>
+            <a href="#contacts">Контакты</a>
+        </nav>
+
+        <a href="#menu" class="header-button">Наше меню</a>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <p class="subtitle">КОФЕЙНЯ · С 2024 ГОДА</p>
+                <h1>Твой момент.<br>Твой <span>кофе.</span></h1>
+                <p class="description">
+                    Место, где аромат свежего кофе
+                    встречается с уютной атмосферой.
+                </p>
+                <a href="#menu" class="main-button">Посмотреть меню →</a>
+            </div>
+
+            <div class="hero-image"></div>
+        </section>
+
+       
+<section class="menu" id="menu">
+
+    <p class="subtitle">НАШ ВЫБОР</p>
+    <h2>Попробуй наше меню</h2>
+
+    <!-- Категории -->
+    <div class="categories">
+        <button class="category active" data-category="all">
+            Всё
+        </button>
+
+        <button class="category" data-category="coffee">
+            Кофе
+        </button>
+
+        <button class="category" data-category="tea">
+            Чай
+        </button>
+
+        <button class="category" data-category="dessert">
+            Десерты
+        </button>
+    </div>
+
+    <!-- Товары -->
+    <div class="menu-grid" id="product-list"></div>
+
+    <!-- Корзина -->
+    <div class="cart" id="cart">
+        <h2>Твоя корзина</h2>
+
+        <div id="cart-items">
+            <p>Корзина пока пуста</p>
+        </div>
+
+        <div class="cart-total">
+            Итого: <strong id="cart-total">0 сом</strong>
+        </div>
+
+        <button class="order-button" id="order-button">
+            Оформить заказ
+        </button>
+    </div>
+
+</section>
+
+        <section class="about" id="about">
+            <p class="subtitle">НАША ФИЛОСОФИЯ</p>
+            <h2>Кофе — это больше,<br>чем просто напиток.</h2>
+            <p>Мы создаём пространство для отдыха,
+               встреч и маленьких радостей каждый день.</p>
+        </section>
+    </main>
+
+    <footer id="contacts">
+        <h2>NOVA<span>.</span></h2>
+        <p>Ждём тебя каждый день!</p>
+        <p>© 2026 NOVA COFFEE</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="script.js"></script>
+</body>
+</html>

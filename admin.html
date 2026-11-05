@@ -1,0 +1,280 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NOVA COFFEE — Admin</title>
+
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+    <!-- ФОРМА ВХОДА -->
+
+    <main id="login-screen" class="login-screen">
+
+        <form id="login-form" class="login-card">
+
+            <a href="index.html" class="brand">
+                NOVA<span>.</span>
+            </a>
+
+            <h1>Панель управления</h1>
+
+            <p class="muted">
+                Войдите в аккаунт администратора
+            </p>
+
+            <label for="email">Электронная почта</label>
+            <input
+                type="email"
+                id="email"
+                placeholder="admin@example.com"
+                required
+            >
+
+            <label for="password">Пароль</label>
+            <input
+                type="password"
+                id="password"
+                placeholder="Ваш пароль"
+                required
+            >
+
+            <button type="submit" id="login-button">
+                Войти
+            </button>
+
+            <p id="login-message" class="message" role="alert"></p>
+
+        </form>
+
+    </main>
+
+
+    <!-- АДМИНИСТРАТИВНАЯ ПАНЕЛЬ -->
+
+    <div id="admin-app" class="admin-app hidden">
+
+        <aside class="sidebar">
+
+            <a href="index.html" class="brand">
+                NOVA<span>.</span>
+            </a>
+
+            <p class="sidebar-label">УПРАВЛЕНИЕ</p>
+
+            <button class="nav-button active" data-view="orders">
+                <span>▣</span> Заказы
+            </button>
+
+            <button class="nav-button" data-view="products">
+                <span>☕</span> Товары
+            </button>
+
+            <div class="sidebar-bottom">
+                <p class="muted">Панель администратора</p>
+
+                <button id="logout-button" class="logout-button">
+                    Выйти из аккаунта
+                </button>
+
+                <a href="index.html" class="back-link">
+                    ← Вернуться на сайт
+                </a>
+            </div>
+
+        </aside>
+
+
+        <main class="dashboard">
+
+            <header class="topbar">
+                <div>
+                    <p class="muted">NOVA COFFEE / ADMIN</p>
+                    <h1 id="page-title">Заказы</h1>
+                </div>
+
+                <span id="admin-email" class="admin-email"></span>
+            </header>
+
+
+            <!-- СТРАНИЦА ЗАКАЗОВ -->
+
+            <section id="orders-view" class="view">
+
+                <div class="stats">
+
+                    <article class="stat-card">
+                        <p>Всего заказов</p>
+                        <h2 id="orders-count">0</h2>
+                    </article>
+
+                    <article class="stat-card">
+                        <p>Новые заказы</p>
+                        <h2 id="new-orders-count">0</h2>
+                    </article>
+
+                    <article class="stat-card">
+                        <p>Сумма заказов без отменённых</p>
+                        <h2 id="revenue">0 сом</h2>
+                    </article>
+
+                </div>
+
+                
+<div class="section-heading">
+    <h2>Последние заказы</h2>
+
+    <button id="refresh-orders" class="secondary-button">
+        Обновить
+    </button>
+</div>
+
+<!-- ПОИСК И ФИЛЬТРЫ -->
+
+<div class="order-filters">
+
+    <div class="filter-field">
+        <label for="order-search">Поиск заказа</label>
+
+        
+<div class="search-input-wrap">
+
+    <input
+        type="text"
+        id="order-search"
+        placeholder="Номер заказа или название товара..."
+        autocomplete="off"
+        spellcheck="false"
+    >
+
+    <button
+        type="button"
+        id="clear-order-search"
+        class="search-clear-button hidden"
+        aria-label="Очистить поиск"
+    >
+        ×
+    </button>
+
+</div>
+
+    </div>
+
+    <div class="filter-field">
+        <label for="order-status-filter">Статус заказа</label>
+
+        <select id="order-status-filter">
+            <option value="all">Все статусы</option>
+            <option value="new">Новые</option>
+            <option value="accepted">Принятые</option>
+            <option value="completed">Выполненные</option>
+            <option value="cancelled">Отменённые</option>
+        </select>
+    </div>
+
+    <button id="clear-order-filters" class="secondary-button">
+        Сбросить
+    </button>
+
+</div>
+
+<div id="orders-list" class="orders-list">
+    <p>Загрузка заказов...</p>
+</div>
+
+
+            </section>
+
+
+            <!-- СТРАНИЦА ТОВАРОВ -->
+
+            <section id="products-view" class="view hidden">
+
+                <div class="section-heading">
+                    <h2>Каталог товаров</h2>
+                    <button id="refresh-products" class="secondary-button">
+                        Обновить
+                    </button>
+                </div>
+
+                <div class="product-form-card">
+
+                    <h2>Добавить новый товар</h2>
+
+                    <form id="product-form">
+
+                        <label for="product-name">Название</label>
+                        <input
+                            id="product-name"
+                            type="text"
+                            maxlength="100"
+                            required
+                        >
+
+                        <label for="product-description">Описание</label>
+                        <textarea
+                            id="product-description"
+                            maxlength="500"
+                            rows="3"
+                        ></textarea>
+
+                        <label for="product-category">Категория</label>
+                        <select id="product-category" required>
+                            <option value="coffee">Кофе</option>
+                            <option value="tea">Чай</option>
+                            <option value="dessert">Десерты</option>
+                        </select>
+
+                        <label for="product-price">Цена (сом)</label>
+                        <input
+                            id="product-price"
+                            type="number"
+                            min="0"
+                            step="1"
+                            required
+                        >
+
+                        <label for="product-image">Ссылка на фотографию</label>
+                        <input
+                            id="product-image"
+                            type="url"
+                            placeholder="https://example.com/image.jpg"
+                        >
+
+                        <button type="submit" id="save-product-button">
+                            Добавить товар
+                        </button>
+
+                    </form>
+
+                </div>
+
+                <h2 class="catalog-title">Существующие товары</h2>
+
+                <div id="products-list" class="products-list">
+                    <p>Загрузка товаров...</p>
+                </div>
+
+            </section>
+
+            <p id="dashboard-message" class="dashboard-message"
+               role="status"></p>
+
+        </main>
+
+    </div>
+
+
+    <!-- БИБЛИОТЕКА SUPABASE -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="admin.js"></script>
+
+</body>
+</html>
